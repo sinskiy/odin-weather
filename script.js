@@ -4,6 +4,12 @@ units.addEventListener("change", handleNewCitySubmit);
 const form = document.querySelector("form");
 form.addEventListener("submit", handleNewCitySubmit);
 
+document.addEventListener("DOMContentLoaded", showCityOnLoad);
+function showCityOnLoad() {
+  cityInput.value = "San Jose, United States of America";
+  handleNewCitySubmit();
+}
+
 const cityInput = document.querySelector('input[type="search"');
 async function handleNewCitySubmit(e = null) {
   const city = cityInput.value;
