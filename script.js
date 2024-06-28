@@ -1,11 +1,18 @@
-const API_KEY = "048be16232dd4056a7f93448242806";
+const form = document.querySelector("form");
+form.addEventListener("submit", handleNewCitySubmit);
 
-async function getWeather() {
-  const CITY = "tambov";
-  const query = `https://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${CITY}&aqi=no`;
-  const response = await fetch(query, { mode: "cors" });
-  const currentWeather = await response.json();
-  console.log(currentWeather.current.temp_c);
+const cityInput = document.querySelector('input[type="search"');
+function handleNewCitySubmit(e) {
+  const city = cityInput.value;
+
+  e.preventDefault();
 }
 
-getWeather();
+// async function getWeather(city = "london") {
+//   const query = `https://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${city}&aqi=no`;
+//   const response = await fetch(query, { mode: "cors" });
+//   const { current, location } = await response.json();
+//   console.log(current, location);
+// }
+
+// getWeather();
