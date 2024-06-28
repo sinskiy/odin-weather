@@ -1,18 +1,29 @@
+const units = document.querySelector("ul");
+units.addEventListener("change", handleNewCitySubmit);
+
 const form = document.querySelector("form");
 form.addEventListener("submit", handleNewCitySubmit);
 
 const cityInput = document.querySelector('input[type="search"');
-async function handleNewCitySubmit(e) {
+async function handleNewCitySubmit(e = null) {
   const city = cityInput.value;
 
-  getWeather("tambov").then(fillWeather);
+  getWeather(city).then(fillWeather);
 
-  e.preventDefault();
+  e && e.preventDefault();
 }
 
 const temperature = document.querySelector(".temperature");
 function fillWeather(weatherObject) {
-  temperature.textContent = weatherObject.temp_c + "°C";
+  const mode = getCurrentMode();
+  temperature.textContent = `${weatherObject[mode]}°${mode
+    .at(-1)
+    .toUpperCase()}`;
+}
+
+const fahrenheit = document.querySelector("#temp_f");
+function getCurrentMode() {
+  return fahrenheit.checked ? "temp_f" : "temp_c";
 }
 
 async function getWeather(city) {

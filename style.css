@@ -23,6 +23,35 @@ body {
   color: var(--on-background);
 }
 
+ul {
+  display: flex;
+  margin-bottom: 2rem;
+}
+
+li {
+  position: relative;
+}
+li label {
+  display: grid;
+  place-content: center;
+
+  width: 2rem;
+  height: 2rem;
+
+  border-radius: 9999px;
+
+  font-weight: 500;
+}
+li :checked + label {
+  background-color: var(--primary);
+  color: var(--on-primary);
+}
+li input[type="radio"] {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+}
+
 form {
   display: grid;
   gap: 2rem;
