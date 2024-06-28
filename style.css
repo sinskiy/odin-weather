@@ -24,6 +24,11 @@ body {
 }
 
 form {
+  display: grid;
+  gap: 2rem;
+}
+
+form .controls {
   display: flex;
   gap: 0.5rem;
 }
@@ -67,4 +72,9 @@ button:hover {
 }
 button:active {
   transform: scale(0.95);
+}
+
+.temperature {
+  font-size: 4rem;
+  font-weight: 600;
 }

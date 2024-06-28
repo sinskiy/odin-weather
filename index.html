@@ -10,8 +10,19 @@
   </head>
   <body>
     <form action="" method="get">
-      <input type="search" name="city" id="city" placeholder="City" required />
-      <button type="submit">Submit</button>
+      <div class="controls">
+        <input
+          type="search"
+          name="city"
+          id="city"
+          placeholder="City"
+          required
+        />
+        <button type="submit">Submit</button>
+      </div>
+      <output name="weather" for="city">
+        <span class="temperature"></span>
+      </output>
     </form>
   </body>
 </html>
