@@ -103,6 +103,15 @@ button:active {
   transform: scale(0.95);
 }
 
+output {
+  display: grid;
+}
+
+.location {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
 .temperature {
   font-size: 4rem;
   font-weight: 600;

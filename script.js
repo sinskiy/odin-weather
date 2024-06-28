@@ -13,8 +13,11 @@ async function handleNewCitySubmit(e = null) {
   e && e.preventDefault();
 }
 
+const weatherLocation = document.querySelector(".location");
 const temperature = document.querySelector(".temperature");
 function fillWeather(weatherObject) {
+  weatherLocation.textContent = `${weatherObject.name}, ${weatherObject.country}`;
+
   const mode = getCurrentMode();
   temperature.textContent = `${weatherObject[mode]}°${mode
     .at(-1)
@@ -31,8 +34,8 @@ async function getWeather(city) {
   const response = await fetch(query, { mode: "cors" });
   const { current, location } = await response.json();
   const { temp_c, temp_f } = current;
-  const { name } = location;
-  return { temp_c, temp_f, name };
+  const { name, country } = location;
+  return { temp_c, temp_f, name, country };
 }
 
 const API_KEY = "048be16232dd4056a7f93448242806";
