@@ -105,14 +105,20 @@ button:active {
 
 output {
   display: grid;
+  grid-template-columns: repeat(2, auto);
+  grid-template-rows: repeat(3, auto);
 }
 
 .location {
+  grid-column: 1 / -1;
+
   font-size: 1.5rem;
   font-weight: 500;
 }
 
 .temperature {
+  grid-row: 2 / -1;
+
   font-size: 4rem;
   font-weight: 600;
 }

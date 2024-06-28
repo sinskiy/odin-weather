@@ -15,27 +15,37 @@ async function handleNewCitySubmit(e = null) {
 
 const weatherLocation = document.querySelector(".location");
 const temperature = document.querySelector(".temperature");
+const feelsLike = document.querySelector(".feels-like");
+const humidity = document.querySelector(".humidity");
 function fillWeather(weatherObject) {
   weatherLocation.textContent = `${weatherObject.name}, ${weatherObject.country}`;
 
   const mode = getCurrentMode();
-  temperature.textContent = `${weatherObject[mode]}°${mode
-    .at(-1)
-    .toUpperCase()}`;
+  temperature.textContent = `${weatherObject["temp_" + mode]}${getModeAppendix(
+    mode
+  )}`;
+  feelsLike.textContent = `Feels like: ${
+    weatherObject["feelslike_" + mode]
+  }${getModeAppendix(mode)}`;
+
+  humidity.textContent = `Humidity: ${weatherObject.humidity}%`;
 }
 
-const fahrenheit = document.querySelector("#temp_f");
+const fahrenheit = document.querySelector("#f");
 function getCurrentMode() {
-  return fahrenheit.checked ? "temp_f" : "temp_c";
+  return fahrenheit.checked ? "f" : "c";
+}
+function getModeAppendix(mode) {
+  return "°" + mode.at(-1).toUpperCase();
 }
 
 async function getWeather(city) {
   const query = `https://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${city}&aqi=no`;
   const response = await fetch(query, { mode: "cors" });
   const { current, location } = await response.json();
-  const { temp_c, temp_f } = current;
+  const { humidity, feelslike_c, feelslike_f, temp_c, temp_f } = current;
   const { name, country } = location;
-  return { temp_c, temp_f, name, country };
+  return { humidity, feelslike_c, feelslike_f, temp_c, temp_f, name, country };
 }
 
 const API_KEY = "048be16232dd4056a7f93448242806";
